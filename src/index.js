@@ -24,7 +24,7 @@ const DEFAULT_VOICE = "es-ES-alvaro";
 
 function corsHeaders(origin,env) {
   const allowed=(env.ALLOWED_ORIGINS||"*").split(",").map(x=>x.trim());
-  const selected=allowed.includes("*")||allowed.includes(origin)?origin:"null";
+  const selected=allowed.includes("*")?(origin||"*"):(allowed.includes(origin)?origin:"null");
   return {
     "Access-Control-Allow-Origin":selected,
     "Access-Control-Allow-Methods":"GET,POST,OPTIONS",
