@@ -78,7 +78,7 @@ export default {
       await env.JOBS.put(id,JSON.stringify({status:"processing",progress:10,completed_chunks:0,total_chunks:1}),{expirationTtl:JOB_TTL});
       try{
         const audio=await synthesize(env,text,voice,rate);
-        await env.AUDIO.put(id,audio,{httpMetadata:{contentType:"audio/mpeg"},expirationTtl:JOB_TTL});
+        await env.AUDIO.put(id,audio,{httpMetadata:{contentType:"audio/mpeg"}});
         await env.JOBS.put(id,JSON.stringify({status:"done",progress:100,completed_chunks:1,total_chunks:1}),{expirationTtl:JOB_TTL});
         return json({job_id:id},202,origin);
       }catch(e){
