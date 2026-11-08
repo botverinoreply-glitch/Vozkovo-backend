@@ -7,7 +7,7 @@ Cloudflare Workers backend for the VozKovo frontend.
 - Cloudflare Workers handles the HTTP API.
 - Workers AI uses Deepgram Aura-2 Spanish and English TTS models.
 - KV stores short-lived job status.
-- R2 stores generated MP3 files temporarily.
+- R2 stores generated MP3 files. Configure an R2 lifecycle rule to expire old objects.
 
 ## Required setup
 
@@ -31,8 +31,9 @@ Cloudflare Workers backend for the VozKovo frontend.
 - This is a Cloudflare-native TTS implementation, not a port of the old Python `edge-tts` backend.
 - Spanish and English Aura-2 voices are included.
 - Current model input limit is 10,000 characters per request.
+- Aura-2 currently does not receive the frontend reading-speed value; the speed slider is not effective yet.
 - MP3 joining for multi-chunk output and pause-marker audio insertion are not implemented yet.
-- Workers AI speech generation is usage-priced; check current account pricing and limits before public launch.
+- Workers AI speech generation is usage-priced (Aura-2 is listed at $0.03 per 1,000 characters); it is not unlimited or guaranteed free. Check current account pricing and limits before public launch.
 - The current worker performs generation in the request before returning the job ID. For long requests, move synthesis to a Cloudflare Queues consumer and return the job immediately.
 
 ## References
