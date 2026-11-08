@@ -9,5 +9,9 @@
   ],
   "r2_buckets": [
     { "binding": "AUDIO", "bucket_name": "vozkovo-audio" }
-  ]
+  ],
+  "vars": {
+    "API_ENABLED": "false",
+    "ALLOWED_ORIGINS": "*"
+  }
 }
